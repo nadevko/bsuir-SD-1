@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <BaseOutputPath>dist</BaseOutputPath>
     <BaseIntermediateOutputPath>dist/obj</BaseIntermediateOutputPath>
-    <StartupObject>sd1.lab$(lab).Program</StartupObject>
+    <StartupObject>sd1._$(lab).Program</StartupObject>
   </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk"/>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk"/>
