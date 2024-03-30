@@ -1,0 +1,2 @@
+Номер дня недели: sdcsd
+The input string 'sdcsd' was not in a correct format.

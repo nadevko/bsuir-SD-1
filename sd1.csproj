@@ -1,14 +1,14 @@
 ﻿<Project>
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>sd1</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <BaseOutputPath>dist</BaseOutputPath>
-    <BaseIntermediateOutputPath>dist/obj</BaseIntermediateOutputPath>
-    <StartupObject>sd1._$(lab).Program</StartupObject>
-  </PropertyGroup>
-  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk"/>
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk"/>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>sd1</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <BaseOutputPath>dist</BaseOutputPath>
+        <BaseIntermediateOutputPath>dist/obj</BaseIntermediateOutputPath>
+        <StartupObject>sd1._$(lab).Program$(task)</StartupObject>
+    </PropertyGroup>
+    <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk"/>
+    <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk"/>
 </Project>

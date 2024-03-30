@@ -1,1 +1,5 @@
 dist/
+.idea/
+build/
+_minted-*/
+indent.log

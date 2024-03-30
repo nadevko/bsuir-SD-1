@@ -1,10 +1,10 @@
 ﻿namespace sd1._1;
 
-internal class Program
+internal class Program1
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-        int money = 0;
+        var money = 0;
         Console.Write("Товар стоит\n\tРублей: ");
         money -= 100 * Convert.ToInt32(Console.ReadLine());
         Console.Write("\tКопеек: ");

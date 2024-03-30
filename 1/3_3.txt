@@ -1,0 +1,3 @@
+Возведение числа X в Y степень
+        Число X: 5..
+OemPeriod is not allowed. Pass correct double
