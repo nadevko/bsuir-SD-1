@@ -32,8 +32,7 @@ internal class Program3
                         if (positive == 2) positive = 1;
                         if (value > 100)
                             throw new Exception(
-                                "Absolute value is {value}, " +
-                                "but should be <= 100");
+                                "Absolute value is {value}, but should be <= 100");
                         break;
                     case var i when i is '.' or ',' && fractional == null:
                         fractional = 0;
@@ -41,8 +40,7 @@ internal class Program3
                         break;
                     default:
                         throw new Exception(
-                            "{input.Key} is not allowed. " +
-                            "Pass correct double");
+                            "{input.Key} is not allowed. Pass correct double");
                 }
             }
             catch (Exception e)
@@ -75,13 +73,11 @@ internal class Program3
                         if (positive == 2) positive--;
                         if (value > 10)
                             throw new Exception(
-                                $"Absolute value is {value}, " +
-                                "but should be <= 10");
+                                $"Absolute value is {value}, but should be <= 10");
                         break;
                     default:
                         throw new Exception(
-                            $"'{input.Key}' is not allowed. " +
-                            "Pass correct integer");
+                            $"'{input.Key}' is not allowed. Pass correct integer");
                 }
             }
             catch (Exception e)
@@ -105,8 +101,7 @@ internal class Program3
 
     private static void Main(string[] args)
     {
-        Console.Write("Возведение числа X в Y степень\n" +
-                      "\tЧисло X: ");
+        Console.Write("Возведение числа X в Y степень\n\tЧисло X: ");
         var x = GetDouble();
         Console.Write("\tСтепень Y: ");
         var y = GetInteger();
