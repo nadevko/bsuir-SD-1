@@ -2,62 +2,67 @@
 
 internal class Program
 {
-    private static University _university = null!;
+    protected University<Student> University = null!;
+
+    public void GameLoop()
+    {
+        Console.Write(">> ");
+        switch (Console.ReadLine())
+        {
+            case "инспекция":
+                Console.WriteLine(University);
+                break;
+            case "набрать":
+                University.Fill();
+                break;
+            case "зачислить":
+                University.Add();
+                break;
+            case "отчислить":
+                Console.Write(">> ");
+                University.Remove(
+                    Convert.ToUInt32(Console.ReadLine())
+                );
+                Console.WriteLine();
+                break;
+            case "сессия":
+                var oldLenght = University.Lenght();
+                University.Update();
+                Console.WriteLine(
+                    $"Окончивших университет: {oldLenght - University.Lenght()}");
+                break;
+            case "бабах":
+                Console.WriteLine(
+                    "Вы взорвали университет\nПлохое решение, но не мне судить\nСтроим новый...");
+                University = new University<Student>();
+                break;
+            case "уволиться":
+                Console.WriteLine("Вы покинули свою должность");
+                return;
+            default:
+                Console.WriteLine(
+                    "помощь\t\tОткрыть это руководство\n" +
+                    "инспекция\tПросмотреть список студентов\n" +
+                    "набрать\t\tОбъявить новый набор студентов\n" +
+                    "зачислить\tЗачислить нового студента\n" +
+                    "отчислить\tОтчислить студента\n" +
+                    "сессия\t\tПовысить студентов на 1 курс и отчислить 4-курсников\n" +
+                    "бабах\t\tОтчислить всех (перезапуск)\n" +
+                    "уволиться\tПокинуть должность (выход)"
+                );
+                break;
+        }
+
+        GameLoop();
+    }
 
     private static void Main(string[] args)
     {
         Console.WriteLine("Поздравляем с вступлением в должность ректора!\nДавайте заполним университет");
-        _university = new University();
+        var program = new Program();
+        program.University = new University<Student>();
         Console.WriteLine("Для просмотра списка приказов напишите \"помощь\"");
-        while (true)
-        {
-            Console.Write(">> ");
-            switch (Console.ReadLine())
-            {
-                case "инспекция":
-                    Console.WriteLine(_university);
-                    break;
-                case "набрать":
-                    _university.Fill();
-                    break;
-                case "зачислить":
-                    _university.Add();
-                    break;
-                case "отчислить":
-                    Console.Write(">> ");
-                    _university.Remove(
-                        Convert.ToUInt32(Console.ReadLine())
-                        );
-                    Console.WriteLine();
-                    break;
-                case "сессия":
-                    var oldLenght = _university.Lenght();
-                    _university.Update();
-                    Console.WriteLine(
-                        $"Окончивших университет: {oldLenght - _university.Lenght()}");
-                    break;
-                case "бабах":
-                    Console.WriteLine(
-                        "Вы взорвали университет\nПлохое решение, но не мне судить\nСтроим новый...");
-                    _university = new University();
-                    break;
-                case "уволиться":
-                    Console.WriteLine("Вы покинули свою должность");
-                    return;
-                default:
-                    Console.WriteLine(
-                        "помощь\t\tОткрыть это руководство\n" +
-                        "инспекция\tПросмотреть список студентов\n" +
-                        "набрать\t\tОбъявить новый набор студентов\n" +
-                        "зачислить\tЗачислить нового студента\n" +
-                        "отчислить\tОтчислить студента\n" +
-                        "сессия\t\tПовысить студентов на 1 курс и отчислить 4-курсников\n" +
-                        "бабах\t\tОтчислить всех (перезапуск)\n" +
-                        "уволиться\tПокинуть должность (выход)"
-                    );
-                    break;
-            }
-        }
+        program.GameLoop();
     }
 }
 
@@ -114,52 +119,48 @@ internal class Student
     }
 }
 
-internal class University
+internal class University<T> where T : Student
 {
-    private Student[] _students;
+    protected T[] Students;
 
-    public University()
-    {
-        _students = Gen();
-    }
+    public University() => Students = Gen();
 
-    public Student[] Gen(int offset = 0)
+    protected virtual T ReadStudent() => (T)Student.Read();
+
+    public T[] Gen(int offset = 0)
     {
-        Student[] students = [];
+        T[] students = [];
         Console.Write("Количество студентов\n>> ");
         var n = Convert.ToInt32(Console.ReadLine());
         for (var i = 1 + offset; i <= n + offset; i++)
         {
             Console.WriteLine($"Студент №{i}");
-            students = students.Append(Student.Read()).ToArray();
+            students = students.Append(ReadStudent()).ToArray();
         }
 
         return students.ToArray();
     }
 
-    public void Fill()
-    {
-        _students = _students.Concat(Gen(_students.Length)).ToArray();
-    }
+    public void Fill() => Students = Students.Concat(Gen(Students.Length)).ToArray();
 
     public override string ToString() =>
         string.Join("\n",
-            _students.Select(student => student.ToString()));
+            Students.Select(student => student.ToString()));
 
     public void Remove(uint n)
     {
-        _students = _students.Where((_, i) => i != n - 1).ToArray();
+        Students = Students.Where((_, i) => i != n - 1).ToArray();
         Console.Write($"Студент №{n} был отчислен");
     }
 
     public void Add()
     {
-        _students = _students.Append(Student.Read()).ToArray();
+        Students = (T[])Students.Append(Student.Read()).ToArray();
         Console.WriteLine($"Студент №{Lenght()} успешно добавлен");
     }
 
     public void Update() =>
-        _students = _students.Where(student => student.Cource < 4).Select(
+        Students = Students.Where(student => student.Cource < 4).Select(
             student =>
             {
                 student.Cource += 1;
@@ -167,5 +168,5 @@ internal class University
             }).ToArray();
 
     public int Lenght() =>
-        _students.Length;
+        Students.Length;
 }
