@@ -1,4 +1,4 @@
-﻿namespace sd1._1;
+namespace sd1._1;
 
 internal class Program2
 {

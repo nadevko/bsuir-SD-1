@@ -1,4 +1,4 @@
-﻿namespace sd1._1;
+namespace sd1._1;
 
 internal class Program1
 {
@@ -18,6 +18,7 @@ internal class Program1
             Math.Abs(money / 100)
         }\n\tКопеек: {
             Math.Abs(money % 100)
-        }");
+        }"
+        );
     }
 }

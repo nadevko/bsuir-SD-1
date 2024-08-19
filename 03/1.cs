@@ -1,4 +1,4 @@
-﻿namespace sd1._3;
+namespace sd1._3;
 
 internal class Program
 {
@@ -20,20 +20,18 @@ internal class Program
                 break;
             case "отчислить":
                 Console.Write(">> ");
-                University.Remove(
-                    Convert.ToUInt32(Console.ReadLine())
-                );
+                University.Remove(Convert.ToUInt32(Console.ReadLine()));
                 Console.WriteLine();
                 break;
             case "сессия":
                 var oldLenght = University.Lenght();
                 University.Update();
-                Console.WriteLine(
-                    $"Окончивших университет: {oldLenght - University.Lenght()}");
+                Console.WriteLine($"Окончивших университет: {oldLenght - University.Lenght()}");
                 break;
             case "бабах":
                 Console.WriteLine(
-                    "Вы взорвали университет\nПлохое решение, но не мне судить\nСтроим новый...");
+                    "Вы взорвали университет\nПлохое решение, но не мне судить\nСтроим новый..."
+                );
                 University = new University<Student>();
                 break;
             case "уволиться":
@@ -41,24 +39,25 @@ internal class Program
                 return;
             default:
                 Console.WriteLine(
-                    "помощь\t\tОткрыть это руководство\n" +
-                    "инспекция\tПросмотреть список студентов\n" +
-                    "набрать\t\tОбъявить новый набор студентов\n" +
-                    "зачислить\tЗачислить нового студента\n" +
-                    "отчислить\tОтчислить студента\n" +
-                    "сессия\t\tПовысить студентов на 1 курс и отчислить 4-курсников\n" +
-                    "бабах\t\tОтчислить всех (перезапуск)\n" +
-                    "уволиться\tПокинуть должность (выход)"
+                    "помощь\t\tОткрыть это руководство\n"
+                        + "инспекция\tПросмотреть список студентов\n"
+                        + "набрать\t\tОбъявить новый набор студентов\n"
+                        + "зачислить\tЗачислить нового студента\n"
+                        + "отчислить\tОтчислить студента\n"
+                        + "сессия\t\tПовысить студентов на 1 курс и отчислить 4-курсников\n"
+                        + "бабах\t\tОтчислить всех (перезапуск)\n"
+                        + "уволиться\tПокинуть должность (выход)"
                 );
                 break;
         }
-
         GameLoop();
     }
 
     private static void Main(string[] args)
     {
-        Console.WriteLine("Поздравляем с вступлением в должность ректора!\nДавайте заполним университет");
+        Console.WriteLine(
+            "Поздравляем с вступлением в должность ректора!\nДавайте заполним университет"
+        );
         var program = new Program();
         program.University = new University<Student>();
         Console.WriteLine("Для просмотра списка приказов напишите \"помощь\"");
@@ -75,7 +74,7 @@ internal enum Факультет
     ФКСиС,
     ФИБ,
     ИЭФ,
-    ВФ
+    ВФ,
 }
 
 internal class Student
@@ -86,8 +85,7 @@ internal class Student
     public Факультет Faculty;
     public uint Cource;
 
-    protected Student(string name, uint id, uint group, Факультет faculty,
-        uint cource) =>
+    protected Student(string name, uint id, uint group, Факультет faculty, uint cource) =>
         (Name, Id, Group, Faculty, Cource) = (name, id, group, faculty, cource);
 
     public override string ToString() =>
@@ -104,12 +102,10 @@ internal class Student
             Console.Write("Группа: ");
             var group = Convert.ToUInt32(Console.ReadLine());
             Console.Write("Факультет: ");
-            var faculty =
-                (Факультет)Enum.Parse(typeof(Факультет), Console.ReadLine()!);
+            var faculty = (Факультет)Enum.Parse(typeof(Факультет), Console.ReadLine()!);
             Console.Write("Курс: ");
             var cource = Convert.ToUInt32(Console.ReadLine());
-            return new Student(name ?? "Неизвестный", id, group, faculty,
-                cource);
+            return new Student(name ?? "Неизвестный", id, group, faculty, cource);
         }
         catch (Exception exc)
         {
@@ -119,7 +115,8 @@ internal class Student
     }
 }
 
-internal class University<T> where T : Student
+internal class University<T>
+    where T : Student
 {
     protected T[] Students;
 
@@ -137,15 +134,13 @@ internal class University<T> where T : Student
             Console.WriteLine($"Студент №{i}");
             students = students.Append(ReadStudent()).ToArray();
         }
-
         return students.ToArray();
     }
 
     public void Fill() => Students = Students.Concat(Gen(Students.Length)).ToArray();
 
     public override string ToString() =>
-        string.Join("\n",
-            Students.Select(student => student.ToString()));
+        string.Join("\n", Students.Select(student => student.ToString()));
 
     public void Remove(uint n)
     {
@@ -160,13 +155,14 @@ internal class University<T> where T : Student
     }
 
     public void Update() =>
-        Students = Students.Where(student => student.Cource < 4).Select(
-            student =>
+        Students = Students
+            .Where(student => student.Cource < 4)
+            .Select(student =>
             {
                 student.Cource += 1;
                 return student;
-            }).ToArray();
+            })
+            .ToArray();
 
-    public int Lenght() =>
-        Students.Length;
+    public int Lenght() => Students.Length;
 }

@@ -1,4 +1,4 @@
-﻿using sd1._3;
+using sd1._3;
 
 namespace sd1._7;
 
@@ -15,13 +15,16 @@ interface ISelfNamed<T>
     void EmanSiht();
 }
 
-class University<T> : _3.University<T>, ISelfNamed<University<T>> where T : Student
+class University<T> : _3.University<T>, ISelfNamed<University<T>>
+    where T : Student
 {
     public override string ToString()
     {
         EmanSiht();
-        return string.Join(",\n",
-            Students.Select(student => student.ToString()).Prepend($"[{ThisName}]"));
+        return string.Join(
+            ",\n",
+            Students.Select(student => student.ToString()).Prepend($"[{ThisName}]")
+        );
     }
 
     public void WriteClass() => Console.WriteLine(this);
@@ -36,9 +39,11 @@ class University<T> : _3.University<T>, ISelfNamed<University<T>> where T : Stud
 }
 
 class Student(string name, uint id, uint group, Факультет faculty, uint cource)
-    : _3.Student(name, id, group, faculty, cource), ISelfNamed<Student>
+    : _3.Student(name, id, group, faculty, cource),
+        ISelfNamed<Student>
 {
-    public override string ToString() => $"{{\n\t{string.Join("\n\t",
+    public override string ToString() =>
+        $"{{\n\t{string.Join("\n\t",
         typeof(Student).GetFields().Select(field => $"{field.Name}: {field.GetValue(this)}"))}\n}}";
 
     public void WriteClass() => Console.WriteLine(this);
@@ -47,7 +52,7 @@ class Student(string name, uint id, uint group, Факультет faculty, uint
 
     public void EmanSiht() => ThisName = new string(ThisName.Reverse().ToArray());
 
-    public new static Student Read()
+    public static new Student Read()
     {
         try
         {
@@ -58,12 +63,10 @@ class Student(string name, uint id, uint group, Факультет faculty, uint
             Console.Write("Группа: ");
             var group = Convert.ToUInt32(Console.ReadLine());
             Console.Write("Факультет: ");
-            var faculty =
-                (Факультет)Enum.Parse(typeof(Факультет), Console.ReadLine()!);
+            var faculty = (Факультет)Enum.Parse(typeof(Факультет), Console.ReadLine()!);
             Console.Write("Курс: ");
             var cource = Convert.ToUInt32(Console.ReadLine());
-            return new Student(name ?? "Неизвестный", id, group, faculty,
-                cource);
+            return new Student(name ?? "Неизвестный", id, group, faculty, cource);
         }
         catch (Exception exc)
         {
@@ -83,13 +86,19 @@ internal class Iterator<T> : ISelfNamed<Iterator<T>>
 
     public override string ToString()
     {
-        if (_isReversed) EmanSiht();
-        return string.Join(",\n",
-            _collection.Select(student =>
-            {
-                if (_isReversed) student.EmanSiht();
-                return student.ThisName + student;
-            }).Prepend($"[{ThisName}]"));
+        if (_isReversed)
+            EmanSiht();
+        return string.Join(
+            ",\n",
+            _collection
+                .Select(student =>
+                {
+                    if (_isReversed)
+                        student.EmanSiht();
+                    return student.ThisName + student;
+                })
+                .Prepend($"[{ThisName}]")
+        );
     }
 
     public void WriteClass() => Console.WriteLine(this);
@@ -116,15 +125,18 @@ internal class Program : _3.Program
 
     private static void Main(string[] args)
     {
-        Console.WriteLine("Поздравляем с вступлением в должность ректора!\nДавайте заполним университет");
+        Console.WriteLine(
+            "Поздравляем с вступлением в должность ректора!\nДавайте заполним университет"
+        );
         var program = new Program();
         program.University = new University<Student>();
         program.University.WriteClass();
         Console.WriteLine(
-            "\nА тепер это будет...\n" +
-            "Научный Итеративный Институт \x1b[9mимени\x1b[0m неймспейса sd1._3\n" +
-            new Iterator<Student>(program.University.ToList()) +
-            "\n3_.1ds асйепсмйен \x1b[9mинеми\x1b[0m Тутитсни Йынвитарети Йынчуан\n" +
-            new Iterator<Student>(program.University.ToList(), true));
+            "\nА тепер это будет...\n"
+                + "Научный Итеративный Институт \x1b[9mимени\x1b[0m неймспейса sd1._3\n"
+                + new Iterator<Student>(program.University.ToList())
+                + "\n3_.1ds асйепсмйен \x1b[9mинеми\x1b[0m Тутитсни Йынвитарети Йынчуан\n"
+                + new Iterator<Student>(program.University.ToList(), true)
+        );
     }
 }

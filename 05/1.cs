@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 
 namespace sd1._5;
 
-internal class Queueue<T> : IEnumerable<T> where T : IComparable<T>
+internal class Queueue<T> : IEnumerable<T>
+    where T : IComparable<T>
 {
     protected List<T> Container = [];
     protected bool Uniq;
@@ -12,12 +13,14 @@ internal class Queueue<T> : IEnumerable<T> where T : IComparable<T>
     public void Push(T element)
     {
         Container.Add(element);
-        if (Uniq) RemoveDublicates();
+        if (Uniq)
+            RemoveDublicates();
     }
 
     public T Pop()
     {
-        if (Lenght() == 0) throw new Exception("Queue is empty");
+        if (Lenght() == 0)
+            throw new Exception("Queue is empty");
         var element = Container[0];
         Container.RemoveAt(0);
         return element;
@@ -40,33 +43,34 @@ internal class Queueue<T> : IEnumerable<T> where T : IComparable<T>
         get
         {
             if (Lenght() <= i)
-                throw new Exception(
-                    $"Can't access element {i} in queue of lenght {Lenght()}");
+                throw new Exception($"Can't access element {i} in queue of lenght {Lenght()}");
             return Container[i];
         }
         set
         {
             if (Lenght() <= i)
-                throw new Exception(
-                    $"Can't access element {i} in queue of lenght {Lenght()}");
-            if (Uniq) RemoveDublicates();
+                throw new Exception($"Can't access element {i} in queue of lenght {Lenght()}");
+            if (Uniq)
+                RemoveDublicates();
             Container[i] = value;
         }
     }
 
     public void ReplaceAll(T from, T to) =>
-        Container = Container
-            .Select(element => Equals(element, from) ? to : element)
-            .ToList();
+        Container = Container.Select(element => Equals(element, from) ? to : element).ToList();
 
     public T Max() => Container.Max()!;
 
     public void RemoveDublicates() =>
-        Container = Container.Aggregate(new List<T>(), (list, item) =>
-        {
-            if (!list.Contains(item)) list.Add(item);
-            return list;
-        });
+        Container = Container.Aggregate(
+            new List<T>(),
+            (list, item) =>
+            {
+                if (!list.Contains(item))
+                    list.Add(item);
+                return list;
+            }
+        );
 
     public int Lenght() => Container.Count;
 
@@ -78,11 +82,11 @@ internal class Queueue<T> : IEnumerable<T> where T : IComparable<T>
 
     public List<T> ToList() => Container;
 
-    public Queueue<T> Clone() =>
-        this.MemberwiseClone() as Queueue<T> ?? new Queueue<T>();
+    public Queueue<T> Clone() => this.MemberwiseClone() as Queueue<T> ?? new Queueue<T>();
 }
 
-internal class QueueueEnumerator<T> : IEnumerator<T> where T : IComparable<T>
+internal class QueueueEnumerator<T> : IEnumerator<T>
+    where T : IComparable<T>
 {
     private readonly Queueue<T> _queue;
     private int _index = -1;
@@ -93,7 +97,8 @@ internal class QueueueEnumerator<T> : IEnumerator<T> where T : IComparable<T>
     {
         var newIndex = _index + 1;
         var success = newIndex < _queue.Lenght();
-        if (success) _index = newIndex;
+        if (success)
+            _index = newIndex;
         return success;
     }
 
@@ -103,9 +108,7 @@ internal class QueueueEnumerator<T> : IEnumerator<T> where T : IComparable<T>
 
     object IEnumerator.Current => Current;
 
-    public void Dispose()
-    {
-    }
+    public void Dispose() { }
 }
 
 internal class Program
@@ -116,7 +119,8 @@ internal class Program
         {
             Console.Write("\tКоличество: ");
             var i = Convert.ToInt32(Console.ReadLine());
-            if (i < 2) throw new InvalidDataException();
+            if (i < 2)
+                throw new InvalidDataException();
             return i;
         }
         catch
@@ -126,8 +130,8 @@ internal class Program
         }
     }
 
-    private static Queueue<T> _try<T>(Func<Queueue<T>, Queueue<T>> func,
-        Queueue<T> queueue) where T : IComparable<T>
+    private static Queueue<T> _try<T>(Func<Queueue<T>, Queueue<T>> func, Queueue<T> queueue)
+        where T : IComparable<T>
     {
         try
         {
@@ -140,46 +144,53 @@ internal class Program
         }
     }
 
-    internal static Queueue<T> Try<T>(Func<Queueue<T>, Queueue<T>> func,
-        Queueue<T>? queueue) where T : IComparable<T> =>
-        _try(func, (queueue == null) ? new Queueue<T>() : queueue);
+    internal static Queueue<T> Try<T>(Func<Queueue<T>, Queueue<T>> func, Queueue<T>? queueue)
+        where T : IComparable<T> => _try(func, (queueue == null) ? new Queueue<T>() : queueue);
 
-    public static Queueue<T> Test<T>(Queueue<T>? q) where T : IComparable<T>
+    public static Queueue<T> Test<T>(Queueue<T>? q)
+        where T : IComparable<T>
     {
-        q = Try(queueue =>
-        {
-            Console.WriteLine($"({typeof(T)}) добавляем элементы");
-            foreach (var i in Enumerable.Range(1, GetLength()))
+        q = Try(
+            queueue =>
             {
-                Console.Write($"\t[{i}] := ");
-                queueue.Push((T)Convert.ChangeType(Console.ReadLine() ?? "",
-                    typeof(T)));
-            }
+                Console.WriteLine($"({typeof(T)}) добавляем элементы");
+                foreach (var i in Enumerable.Range(1, GetLength()))
+                {
+                    Console.Write($"\t[{i}] := ");
+                    queueue.Push((T)Convert.ChangeType(Console.ReadLine() ?? "", typeof(T)));
+                }
 
-            return queueue;
-        }, q ?? null);
+                return queueue;
+            },
+            q ?? null
+        );
         Console.WriteLine(q);
 
-        Try(queueue =>
-        {
-            Console.Write("Найти по индексу: ");
-            Console.WriteLine(q[Convert.ToInt32(Console.ReadLine()) - 1]);
-            return queueue;
-        }, q);
+        Try(
+            queueue =>
+            {
+                Console.Write("Найти по индексу: ");
+                Console.WriteLine(q[Convert.ToInt32(Console.ReadLine()) - 1]);
+                return queueue;
+            },
+            q
+        );
         Console.WriteLine($"Удаляем первый элемент...({q.Pop()})\n{q}");
-        Try(queueue =>
-        {
-            Console.Write("Заменяем\n\tвсе: ");
-            var from = (T)Convert.ChangeType(Console.ReadLine() ?? "", typeof(T));
-            Console.Write("\tна: ");
-            var to = (T)Convert.ChangeType(Console.ReadLine() ?? "", typeof(T));
-            queueue.ReplaceAll(from, to);
-            return queueue;
-        }, q);
+        Try(
+            queueue =>
+            {
+                Console.Write("Заменяем\n\tвсе: ");
+                var from = (T)Convert.ChangeType(Console.ReadLine() ?? "", typeof(T));
+                Console.Write("\tна: ");
+                var to = (T)Convert.ChangeType(Console.ReadLine() ?? "", typeof(T));
+                queueue.ReplaceAll(from, to);
+                return queueue;
+            },
+            q
+        );
         Console.WriteLine(q);
         q.RemoveDublicates();
-        Console.WriteLine(
-            $"Удаляем дубликаты...\n{q}\nНаходим наибольшее...\n{q.Max()}");
+        Console.WriteLine($"Удаляем дубликаты...\n{q}\nНаходим наибольшее...\n{q.Max()}");
 
         q.Reverse();
         Console.WriteLine($"Обратный порядок: {q}");
