@@ -2,21 +2,34 @@
   pkgs ? import <nixpkgs> { overlays = [ (import <bsuir-tex/nixpkgs>) ]; },
 }:
 with pkgs;
-(mkShell.override { stdenv = pkgs.stdenvNoCC; }) rec {
+let
+  dotnetPkg =
+    with dotnetCorePackages;
+    combinePackages [
+      sdk_6_0
+      sdk_8_0
+    ];
+  dotnetDeps = [
+    xorg.libX11
+    xorg.libICE
+    xorg.libSM
+    fontconfig
+  ];
+in
+mkShell rec {
   name = "SD-1";
 
   vscode-settings = writeText "settings.json" (
     builtins.toJSON { "dotnetAcquisitionExtension.sharedExistingDotnetPath" = DOTNET_ROOT; }
   );
 
-  dotnetPkg = with dotnetCorePackages; combinePackages [ sdk_8_0 ];
   packages = [
     (texliveSmall.withPackages (_: with texlivePackages; [ bsuir-tex ]))
-    python312Packages.pygments
-    inkscape-with-extensions
     dotnetPkg
-  ];
-
+    inkscape-with-extensions
+    python312Packages.pygments
+  ] ++ dotnetDeps;
+  LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath dotnetDeps;
   DOTNET_ROOT = "${dotnetPkg}/dotnet";
 
   shellHook = ''
