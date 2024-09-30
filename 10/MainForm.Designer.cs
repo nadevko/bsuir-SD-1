@@ -1,4 +1,4 @@
-namespace sd1._11
+namespace sd1._10
 {
 	partial class MainForm
 	{

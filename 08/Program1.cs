@@ -1,4 +1,4 @@
-﻿namespace sd1._9;
+﻿namespace sd1._8;
 
 internal partial class Program1
 {

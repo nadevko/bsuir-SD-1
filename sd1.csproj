@@ -12,7 +12,7 @@
     <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
     <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
     <ItemGroup>
-      <None Include="11/_11.csproj" Condition="'$(OS)' == 'Windows_NT'" />
-      <Compile Remove="11/**" Condition="'$(OS)' != 'Windows_NT'" />
+      <None Include="10/_10.csproj" Condition="'$(OS)' == 'Windows_NT'" />
+      <Compile Remove="10/**" Condition="'$(OS)' != 'Windows_NT'" />
     </ItemGroup>
 </Project>

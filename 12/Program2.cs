@@ -1,6 +1,9 @@
-﻿namespace sd1._13;
+﻿using System.Text;
+using System.Text.Json;
 
-internal partial class Program1
+namespace sd1._12;
+
+internal partial class Program2
 {
     static void Main(string[] args)
     {
@@ -8,16 +11,20 @@ internal partial class Program1
 
         try
         {
-            StreamWriter writer = new(path);
             string? input;
+            var sb = new StringBuilder();
 
             Console.WriteLine("Enter strings to write to the file");
             Console.WriteLine("To finish input, leave the string empty and press Enter\n");
 
             while (!string.IsNullOrEmpty(input = Console.ReadLine()))
-                writer.WriteLine(input);
-            writer.WriteLine();
-            writer.Close();
+                sb.AppendLine(input);
+
+            var data = JsonDocument.Parse(sb.ToString());
+            File.WriteAllText(
+                path,
+                JsonSerializer.Serialize(data, new JsonSerializerOptions() { WriteIndented = true })
+            );
         }
         catch (Exception exception)
         {
