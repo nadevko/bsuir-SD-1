@@ -1,4 +1,4 @@
-namespace sd1._1;
+namespace sd1._01;
 
 internal class Program3
 {
@@ -18,10 +18,7 @@ internal class Program3
                         break;
                     case var i when char.IsNumber(i):
                         if (fractional != null)
-                        {
-                            fractional--;
-                            value += char.GetNumericValue(i) * Pow(i, (int)fractional);
-                        }
+                            value += char.GetNumericValue(i) * Pow(i, (int)(--fractional));
                         else
                         {
                             value *= 10;

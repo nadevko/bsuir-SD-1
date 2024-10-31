@@ -1,4 +1,4 @@
-namespace sd1._3;
+namespace sd1._03;
 
 internal class Program
 {
@@ -53,20 +53,19 @@ internal class Program
         GameLoop();
     }
 
-    private static void Main(string[] args)
+    private static void Main()
     {
         Console.WriteLine(
             "Поздравляем с вступлением в должность ректора!\nДавайте заполним университет"
         );
-        var program = new Program();
-        program.University = new University<Student>();
+        Program program = new() { University = new University<Student>() };
         Console.WriteLine("Для просмотра списка приказов напишите \"помощь\"");
         program.GameLoop();
     }
 }
 
 // хехе, cyrillic
-internal enum Факультет
+internal enum Факультэт
 {
     ФКП,
     ФИТУ,
@@ -82,10 +81,10 @@ internal class Student
     public string Name;
     public uint Id;
     public uint Group;
-    public Факультет Faculty;
+    public Факультэт Faculty;
     public uint Cource;
 
-    protected Student(string name, uint id, uint group, Факультет faculty, uint cource) =>
+    protected Student(string name, uint id, uint group, Факультэт faculty, uint cource) =>
         (Name, Id, Group, Faculty, Cource) = (name, id, group, faculty, cource);
 
     public override string ToString() =>
@@ -102,7 +101,7 @@ internal class Student
             Console.Write("Группа: ");
             var group = Convert.ToUInt32(Console.ReadLine());
             Console.Write("Факультет: ");
-            var faculty = (Факультет)Enum.Parse(typeof(Факультет), Console.ReadLine()!);
+            var faculty = (Факультэт)Enum.Parse(typeof(Факультэт), Console.ReadLine()!);
             Console.Write("Курс: ");
             var cource = Convert.ToUInt32(Console.ReadLine());
             return new Student(name ?? "Неизвестный", id, group, faculty, cource);
@@ -134,7 +133,7 @@ internal class University<T>
             Console.WriteLine($"Студент №{i}");
             students = students.Append(ReadStudent()).ToArray();
         }
-        return students.ToArray();
+        return [.. students];
     }
 
     public void Fill() => Students = Students.Concat(Gen(Students.Length)).ToArray();

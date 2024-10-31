@@ -1,8 +1,8 @@
-namespace sd1._1;
+namespace sd1._01;
 
 internal class Program1
 {
-    private static void Main(string[] args)
+    private static void Main()
     {
         var money = 0;
         Console.Write("Товар стоит\n\tРублей: ");
@@ -14,11 +14,9 @@ internal class Program1
         Console.Write("\tКопеек: ");
         money += Convert.ToInt32(Console.ReadLine());
         Console.WriteLine(
-            $"{(money < 0 ? "Задолженность" : "Остаток")}:\n\tРублей: {
-            Math.Abs(money / 100)
-        }\n\tКопеек: {
-            Math.Abs(money % 100)
-        }"
+            $"{(money < 0 ? "Задолженность" : "Остаток")
+            }:\n\tРублей: {Math.Abs(money / 100)
+            }\n\tКопеек: {Math.Abs(money % 100)}"
         );
     }
 }

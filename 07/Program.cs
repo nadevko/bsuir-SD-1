@@ -1,6 +1,4 @@
-using sd1._3;
-
-namespace sd1._7;
+namespace sd1._07;
 
 interface ISelfNamed<T>
 {
@@ -15,7 +13,7 @@ interface ISelfNamed<T>
     void EmanSiht();
 }
 
-class University<T> : _3.University<T>, ISelfNamed<University<T>>
+class University<T> : _03.University<T>, ISelfNamed<University<T>>
     where T : Student
 {
     public override string ToString()
@@ -38,8 +36,8 @@ class University<T> : _3.University<T>, ISelfNamed<University<T>>
     public List<T> ToList() => Students.ToList();
 }
 
-class Student(string name, uint id, uint group, Факультет faculty, uint cource)
-    : _3.Student(name, id, group, faculty, cource),
+class Student(string name, uint id, uint group, _03.Факультэт faculty, uint cource)
+    : _03.Student(name, id, group, faculty, cource),
         ISelfNamed<Student>
 {
     public override string ToString() =>
@@ -63,7 +61,7 @@ class Student(string name, uint id, uint group, Факультет faculty, uint
             Console.Write("Группа: ");
             var group = Convert.ToUInt32(Console.ReadLine());
             Console.Write("Факультет: ");
-            var faculty = (Факультет)Enum.Parse(typeof(Факультет), Console.ReadLine()!);
+            var faculty = (_03.Факультэт)Enum.Parse(typeof(_03.Факультэт), Console.ReadLine()!);
             Console.Write("Курс: ");
             var cource = Convert.ToUInt32(Console.ReadLine());
             return new Student(name ?? "Неизвестный", id, group, faculty, cource);
@@ -119,7 +117,7 @@ internal class Iterator<T> : ISelfNamed<Iterator<T>>
     }
 }
 
-internal class Program : _3.Program
+internal class Program : _03.Program
 {
     public new University<Student> University = null!;
 

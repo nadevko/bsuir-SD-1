@@ -1,67 +1,42 @@
-namespace sd1._6;
+using System.Collections;
 
-class Queueue<T>(bool uniq = false) : _5.Queueue<T>(uniq)
+namespace sd1._05;
+
+internal class Queueue<T>(bool uniq = false) : IEnumerable<T>
     where T : IComparable<T>
 {
-    public IEnumerable<int> FindAll(Predicate<T> predicat)
+    protected List<T> Container = [];
+    protected bool Uniq = uniq;
+
+    public void Push(T element)
     {
-        var indexes = new List<int>();
-        for (var i = 0; i < Lenght(); i++)
-            if (predicat(this[i]))
-                indexes.Add(i);
-        return indexes.ToArray();
+        Container.Add(element);
+        if (Uniq)
+            RemoveDublicates();
     }
 
-    public Queueue<T> Where(Predicate<T> predicat)
+    public T Pop()
     {
-        var q = new Queueue<T>(Uniq);
-        foreach (var value in FindAll(predicat))
-            q.Push(this[value]);
-        return q;
-    }
-
-    internal delegate void AddHandler(T value);
-
-    public event AddHandler? AddNotify;
-
-    internal delegate void RemoveHandler(T value);
-
-    public event RemoveHandler? RemoveNotify;
-
-    internal delegate void UpdateHandler(int index, T value);
-
-    public event UpdateHandler? UpdateNotify;
-
-    internal delegate void ChangeHandler();
-
-    public event ChangeHandler? ChangeNotify;
-
-    public new void Push(T element)
-    {
-        base.Push(element);
-        AddNotify?.Invoke(element);
-    }
-
-    public new T Pop()
-    {
-        var element = base.Pop();
-        RemoveNotify?.Invoke(element);
+        if (Lenght() == 0)
+            throw new Exception("Queue is empty");
+        var element = Container[0];
+        Container.RemoveAt(0);
         return element;
     }
 
-    public new void Sort(Comparison<T> comparison)
+    public int Find(Predicate<T> predicat)
     {
-        base.Sort(comparison);
-        ChangeNotify?.Invoke();
+        for (var i = 0; i < Lenght(); i++)
+            if (predicat(this[i]))
+                return i;
+        return -1;
     }
 
-    public new void Reverse()
-    {
-        base.Reverse();
-        ChangeNotify?.Invoke();
-    }
+    public void Sort(Comparison<T> comparison) => Container.Sort(comparison);
 
-    public new T this[int i]
+    public void Reverse() => Container.Reverse();
+
+    public T this[int i]
     {
         get
         {
@@ -75,32 +50,67 @@ class Queueue<T>(bool uniq = false) : _5.Queueue<T>(uniq)
                 throw new Exception($"Can't access element {i} in queue of lenght {Lenght()}");
             if (Uniq)
                 RemoveDublicates();
-            UpdateNotify?.Invoke(i, this[i]);
             Container[i] = value;
         }
     }
 
-    public new void ReplaceAll(T from, T to)
+    public void ReplaceAll(T from, T to) =>
+        Container = Container.Select(element => Equals(element, from) ? to : element).ToList();
+
+    public T Max() => Container.Max()!;
+
+    public void RemoveDublicates() =>
+        Container = Container.Aggregate(
+            new List<T>(),
+            (list, item) =>
+            {
+                if (!list.Contains(item))
+                    list.Add(item);
+                return list;
+            }
+        );
+
+    public int Lenght() => Container.Count;
+
+    public IEnumerator<T> GetEnumerator() => new QueueueEnumerator<T>(this);
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    public override string ToString() => string.Join(", ", Container);
+
+    public List<T> ToList() => Container;
+
+    public Queueue<T> Clone() => MemberwiseClone() as Queueue<T> ?? new Queueue<T>();
+}
+
+internal class QueueueEnumerator<T> : IEnumerator<T>
+    where T : IComparable<T>
+{
+    private readonly Queueue<T> _queue;
+    private int _index = -1;
+
+    public QueueueEnumerator(Queueue<T> queue) => _queue = queue;
+
+    public bool MoveNext()
     {
-        base.ReplaceAll(from, to);
-        ChangeNotify?.Invoke();
+        var newIndex = _index + 1;
+        var success = newIndex < _queue.Lenght();
+        if (success)
+            _index = newIndex;
+        return success;
     }
 
-    public new void RemoveDublicates()
-    {
-        base.RemoveDublicates();
-        ChangeNotify?.Invoke();
-    }
+    public void Reset() => _index = -1;
+
+    public T Current => _queue[_index];
+
+    object IEnumerator.Current => Current;
+
+    public void Dispose() { }
 }
 
 internal class Program
 {
-    private static void Main(string[] args)
-    {
-        Test<int>(null);
-        Test<string>(null);
-    }
-
     private static int GetLength()
     {
         try
@@ -133,17 +143,12 @@ internal class Program
     }
 
     internal static Queueue<T> Try<T>(Func<Queueue<T>, Queueue<T>> func, Queueue<T>? queueue)
-        where T : IComparable<T> => _try(func, (queueue == null) ? new Queueue<T>() : queueue);
+        where T : IComparable<T> => _try(func, queueue ?? new Queueue<T>());
 
     public static Queueue<T> Test<T>(Queueue<T>? q)
         where T : IComparable<T>
     {
-        q = new Queueue<T>();
-        q.AddNotify += (value) => Console.WriteLine($"Добавлен элемент {value}");
-        q.RemoveNotify += (value) => Console.WriteLine($"Удален элемент {value}");
-        q.ChangeNotify += () => Console.WriteLine("Чую нешта дрэннае");
-        q.UpdateNotify += (i, value) => Console.WriteLine($"Изменен элемент\n\t[{i}] := {value}");
-        Try(
+        q = Try(
             queueue =>
             {
                 Console.WriteLine($"({typeof(T)}) добавляем элементы");
@@ -155,7 +160,7 @@ internal class Program
 
                 return queueue;
             },
-            q
+            q ?? null
         );
         Console.WriteLine(q);
 
@@ -187,28 +192,15 @@ internal class Program
 
         q.Reverse();
         Console.WriteLine($"Обратный порядок: {q}");
-        q.Sort(((a, b) => a.CompareTo(b)));
+        q.Sort((a, b) => a.CompareTo(b));
         Console.WriteLine($"Отсортированный порядок: {q}");
-        Try(
-            queueue =>
-            {
-                Console.Write("Найти по значению: ");
-                var target = (T)Convert.ChangeType(Console.ReadLine() ?? "", typeof(T));
-                Console.WriteLine(q.Find(value => value.Equals(target)));
-                return queueue;
-            },
-            q
-        );
-        Try(
-            queueue =>
-            {
-                Console.Write("Отфильтровать по значениям: ");
-                var target = (T)Convert.ChangeType(Console.ReadLine() ?? "", typeof(T));
-                Console.WriteLine(q.Where(value => value.Equals(target)));
-                return queueue;
-            },
-            q
-        );
         return q;
+    }
+
+    private static void Main()
+    {
+        Test<int>(null);
+        Test<double>(null);
+        Test<string>(null);
     }
 }

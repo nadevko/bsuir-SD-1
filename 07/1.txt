@@ -1,0 +1,113 @@
+Поздравляем с вступлением в должность ректора!
+Давайте заполним университет
+Количество студентов
+>> 3
+Студент №1
+Имя: h
+Номер: 7
+Группа: 777777
+Факультет: n
+Requested value 'n' was not found.
+Попробуйте снова
+Имя: 6
+Номер: 8
+Группа: 777997
+Факультет: 4
+Курс: 7
+Студент №2
+Имя: hbh
+Номер: 44
+Группа: bgg
+The input string 'bgg' was not in a correct format.
+Попробуйте снова
+Имя: 56
+Номер: 3
+Группа: 456555
+Факультет: 1
+Курс: 4
+Студент №3
+Имя: gbg
+Номер: 44
+Группа: hy
+The input string 'hy' was not in a correct format.
+Попробуйте снова
+Имя: 77
+Номер: 6
+Группа: 56\
+The input string '56\' was not in a correct format.
+Попробуйте снова
+Имя: jj
+Номер: 2
+Группа: 333333
+Факультет: 1
+Курс: 2
+[tnedutS/7],
+{
+        Name: 6
+        Id: 8
+        Group: 777997
+        Faculty: ФИБ
+        Cource: 7
+},
+{
+        Name: 56
+        Id: 3
+        Group: 456555
+        Faculty: ФИТУ
+        Cource: 4
+},
+{
+        Name: jj
+        Id: 2
+        Group: 333333
+        Faculty: ФИТУ
+        Cource: 2
+}
+
+А тепер это будет...
+Научный Итеративный Институт имени неймспейса sd1._3
+[Iterator],
+7/Student{
+        Name: 6
+        Id: 8
+        Group: 777997
+        Faculty: ФИБ
+        Cource: 7
+},
+7/Student{
+        Name: 56
+        Id: 3
+        Group: 456555
+        Faculty: ФИТУ
+        Cource: 4
+},
+7/Student{
+        Name: jj
+        Id: 2
+        Group: 333333
+        Faculty: ФИТУ
+        Cource: 2
+}
+3_.1ds асйепсмйен инеми Тутитсни Йынвитарети Йынчуан
+[rotaretI],
+tnedutS/7{
+        Name: 6
+        Id: 8
+        Group: 777997
+        Faculty: ФИБ
+        Cource: 7
+},
+tnedutS/7{
+        Name: 56
+        Id: 3
+        Group: 456555
+        Faculty: ФИТУ
+        Cource: 4
+},
+tnedutS/7{
+        Name: jj
+        Id: 2
+        Group: 333333
+        Faculty: ФИТУ
+        Cource: 2
+}

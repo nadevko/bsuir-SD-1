@@ -1,8 +1,8 @@
-namespace sd1._1;
+namespace sd1._01;
 
 internal class Program2
 {
-    private static void Main(string[] args)
+    private static void Main()
     {
         Console.Write("Номер дня недели: ");
         try

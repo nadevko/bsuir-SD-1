@@ -1,6 +1,6 @@
 namespace sd1._08;
 
-internal partial class Program
+internal class Program
 {
     private static int counter;
     private static readonly object @lock = new();

@@ -1,11 +1,10 @@
-using System;
-using sd1._3;
+using sd1._03;
 
-namespace sd1._4;
+namespace sd1._04;
 
 internal class Program
 {
-    private static void Main(string[] args)
+    private static void Main()
     {
         Console.WriteLine("Давайте создадим случайное расписание студента");
         Console.WriteLine(StudentRandom.Read());
@@ -14,7 +13,7 @@ internal class Program
     }
 }
 
-internal class StudentWithSchedule(string name, uint id, uint group, Факультет faculty, uint cource)
+internal class StudentWithSchedule(string name, uint id, uint group, Факультэт faculty, uint cource)
     : Student(name, id, group, faculty, cource)
 {
     protected Dictionary<TimeOnly, string> Schedule = new();
@@ -52,7 +51,7 @@ internal class StudentRandom : StudentWithSchedule
         "ИнЯз",
     ];
 
-    public StudentRandom(string name, uint id, uint group, Факультет faculty, uint cource)
+    public StudentRandom(string name, uint id, uint group, Факультэт faculty, uint cource)
         : base(name, id, group, faculty, cource)
     {
         var rand = new Random();
@@ -75,7 +74,7 @@ internal class StudentRandom : StudentWithSchedule
             Console.Write("Группа: ");
             var group = Convert.ToUInt32(Console.ReadLine());
             Console.Write("Факультет: ");
-            var faculty = (Факультет)Enum.Parse(typeof(Факультет), Console.ReadLine()!);
+            var faculty = (Факультэт)Enum.Parse(typeof(Факультэт), Console.ReadLine()!);
             Console.Write("Курс: ");
             var cource = Convert.ToUInt32(Console.ReadLine());
             return new StudentRandom(name ?? "Неизвестный", id, group, faculty, cource);
@@ -88,7 +87,7 @@ internal class StudentRandom : StudentWithSchedule
     }
 }
 
-internal class StudentDefined(string name, uint id, uint group, Факультет faculty, uint cource)
+internal class StudentDefined(string name, uint id, uint group, Факультэт faculty, uint cource)
     : StudentWithSchedule(name, id, group, faculty, cource)
 {
     public static new StudentDefined Read()
@@ -102,7 +101,7 @@ internal class StudentDefined(string name, uint id, uint group, Факульте
             Console.Write("Группа: ");
             var group = Convert.ToUInt32(Console.ReadLine());
             Console.Write("Факультет: ");
-            var faculty = (Факультет)Enum.Parse(typeof(Факультет), Console.ReadLine()!);
+            var faculty = (Факультэт)Enum.Parse(typeof(Факультэт), Console.ReadLine()!);
             Console.Write("Курс: ");
             var cource = Convert.ToUInt32(Console.ReadLine());
             return Read(new StudentDefined(name ?? "Неизвестный", id, group, faculty, cource));
