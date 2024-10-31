@@ -3,12 +3,7 @@
 }:
 with pkgs;
 let
-  dotnetPkg =
-    with dotnetCorePackages;
-    combinePackages [
-      sdk_6_0
-      sdk_8_0
-    ];
+  dotnetPkg = with dotnetCorePackages; combinePackages [ sdk_8_0 ];
   dotnetDeps = [
     xorg.libX11
     xorg.libICE
@@ -20,12 +15,15 @@ mkShell rec {
   name = "SD-1";
 
   vscode-settings = writeText "settings.json" (
-    builtins.toJSON { "dotnetAcquisitionExtension.sharedExistingDotnetPath" = DOTNET_ROOT; }
+    builtins.toJSON {
+      "dotnetAcquisitionExtension.sharedExistingDotnetPath" = DOTNET_ROOT;
+    }
   );
 
   packages = [
-    (texliveSmall.withPackages (_: with texlivePackages; [ bsuir-tex ]))
+    (texliveMedium.withPackages (_: with texlivePackages; [ bsuir-tex ]))
     dotnetPkg
+    tex-fmt
     inkscape-with-extensions
     python312Packages.pygments
   ] ++ dotnetDeps;

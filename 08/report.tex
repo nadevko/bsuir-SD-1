@@ -1,0 +1,45 @@
+\documentclass{bsuir}
+
+\departmentlong{инженерной психологии и эргономики}
+\workcode{8}
+\worktitle{Разработка, отладка и испытание многопоточного приложения с
+синхронизированными потоками}
+\titleleft{
+    Проверил:\\
+    Давыдович К.И.\\
+    ~
+}
+\titleright{
+    Выполнил:\\
+    Бородин А.Н.\\
+    гр. 310901
+}
+\titlepageyear{2024}
+
+\newfontface\liberationrm{Liberation Serif}
+\newcommand{\csharp}{C{\liberationrm\#}}
+
+\begin{document}
+
+\maketitle
+\mainmatter
+
+\phantomheading*{Задание 8}
+
+\textbf{Цель}: научиться работать с многопоточностью на языка \csharp,
+используя класс Thread.
+
+\section*{Задание 8.2}
+
+Создайте программу, в которой два потока одновременно увеличивают значение
+одной и той же переменной. Используйте механизм синхронизации для
+предотвращения гонок данных.
+
+\makelisting{Program.cs}
+
+\makelisting{1.txt}[Вывод программы]
+
+\textbf{Вывод}: освоена многопоточность в \csharp, создание потоков и
+обработка исключений в них.
+
+\end{document}

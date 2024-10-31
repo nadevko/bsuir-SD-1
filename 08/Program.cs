@@ -1,6 +1,6 @@
-namespace sd1._8;
+namespace sd1._08;
 
-internal partial class Program2
+internal partial class Program
 {
     private static int counter;
     private static readonly object @lock = new();
@@ -14,8 +14,7 @@ internal partial class Program2
         t1.Start();
         t2.Start();
 
-        // >= 37
-        Thread.Sleep(40);
+        Thread.Sleep(38);
         stop = true;
 
         t1.Join();
