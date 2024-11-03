@@ -1,0 +1,8 @@
+Enter strings to write to the file
+To finish input, leave the string empty and press Enter
+
+[
+"Example JSON"
+]
+
+File written successfully to /tmp/output.json

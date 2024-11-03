@@ -1,0 +1,6 @@
+Enter strings to write to the file
+To finish input, leave the string empty and press Enter
+
+Example text
+
+File written successfully to /tmp/output.txt

@@ -1,13 +1,12 @@
 ﻿namespace sd1._12;
 
-internal partial class Program1
+internal class Program1
 {
     static void Main(string[] args)
     {
-        var path = Path.GetFullPath(args[0]);
-
         try
         {
+            var path = Path.GetFullPath(args[0]);
             StreamWriter writer = new(path);
             string? input;
 
@@ -16,15 +15,18 @@ internal partial class Program1
 
             while (!string.IsNullOrEmpty(input = Console.ReadLine()))
                 writer.WriteLine(input);
-            writer.WriteLine();
             writer.Close();
+            Console.WriteLine($"File written successfully to {path}");
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Console.WriteLine("Error: No file path provided");
+            Environment.Exit(1);
         }
         catch (Exception exception)
         {
             Console.WriteLine($"Error: {exception.Message}");
             Environment.Exit(1);
         }
-
-        Console.WriteLine($"File written successfully to {path}");
     }
 }
