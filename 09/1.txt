@@ -1,0 +1,108 @@
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: RanToCompletion. IsCompleted: yes
+All tasks are completed. ContinueWith is called.
+[4]: 303 primes
+[2]: 168 primes
+[3]: 430 primes
+All tasks are completed. GetAwaiter().GetResult() is called.
+[5]: 168 primes
+[6]: 303 primes
+[7]: 430 primes
+Benchmarking unparallel...
+#01: 00:00:07.7713567
+#02: 00:00:07.7781514
+#03: 00:00:07.7908806
+#04: 00:00:07.7948368
+#05: 00:00:07.8214525
+#06: 00:00:07.9657187
+#07: 00:00:07.9663342
+#08: 00:00:08.1190999
+#09: 00:00:08.1191488
+#10: 00:00:08.1446758
+Average elapsed time: 00:00:07.9271655
+Search primes up to 100000000
+Press any key to cancel...
+Unparallel elapsed time: 00:00:03.0720706
+Parallel elapsed time: 00:01:16.2083033
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Customer 11 bought product#6.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Customer 11 bought product#6.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Customer 11 bought product#6.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Customer 11 bought product#6.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Customer 11 bought product#6.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Customer 11 bought product#6.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6, product#6
+Customer 11 bought product#6.
+Customer 11 bought product#6.
+Customer 11 bought product#6.
+Customer 11 bought product#6.
+Customer 11 arrived, but no products are available.
+Customer 11 arrived, but no products are available.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6, product#6, product#6
+All tasks are completed.

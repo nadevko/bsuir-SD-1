@@ -16,7 +16,7 @@ internal class Program
 internal class StudentWithSchedule(string name, uint id, uint group, Факультэт faculty, uint cource)
     : Student(name, id, group, faculty, cource)
 {
-    protected Dictionary<TimeOnly, string> Schedule = new();
+    protected Dictionary<TimeOnly, string> Schedule = [];
 
     protected virtual string GetSchedule()
     {

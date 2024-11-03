@@ -1,0 +1,110 @@
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: Running. IsCompleted: no
+[1]: RanToCompletion. IsCompleted: yes
+All tasks are completed. ContinueWith is called.
+[4]: 430 primes
+[3]: 303 primes
+[2]: 168 primes
+All tasks are completed. GetAwaiter().GetResult() is called.
+[5]: 168 primes
+[6]: 303 primes
+[7]: 430 primes
+Benchmarking unparallel...
+#01: 00:00:08.1493099
+#02: 00:00:08.1930645
+#03: 00:00:08.2465595
+#04: 00:00:08.3563594
+#05: 00:00:08.3754323
+#06: 00:00:08.3906622
+#07: 00:00:08.4926791
+#08: 00:00:08.5059084
+#09: 00:00:08.5493638
+#10: 00:00:08.5525790
+Average elapsed time: 00:00:08.3811918
+Search primes up to 100000000
+Press any key to cancel...
+85% of result are primes
+Unparallel elapsed time: 00:00:02.8618034
+Parallel elapsed time: 00:00:55.2869959
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Покупатель 11 купил product#6.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Покупатель 11 купил product#6.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6
+Покупатель 11 купил product#6.
+Покупатель 11 купил product#6.
+Покупатель 11 пришел, но товара нет.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Покупатель 11 купил product#6.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Покупатель 11 купил product#6.
+Покупатель 11 пришел, но товара нет.
+Покупатель 11 пришел, но товара нет.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6
+Покупатель 11 купил product#6.
+Покупатель 11 купил product#6.
+Покупатель 11 купил product#6.
+Supplier add product#6 to warehouse.
+Warehouse state: product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6, product#6, product#6
+Supplier add product#6 to warehouse.
+Warehouse state: product#6, product#6, product#6, product#6, product#6, product#6
+All tasks are completed.
