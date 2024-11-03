@@ -1,0 +1,71 @@
+\documentclass{bsuir}
+
+\departmentlong{инженерной психологии и эргономики}
+\workcode{10}
+\worktitle{Разработка, отладка и испытание программ\\с пользовательскими диалоговыми
+окнами}
+\titleleft{
+    Проверил:\\
+    Давыдович К.И.\\
+    ~
+}
+\titleright{
+    Выполнил:\\
+    Бородин А.Н.\\
+    гр. 310901
+}
+\titlepageyear{2024}
+
+\newfontface\liberationrm{Liberation Serif}
+\newcommand{\csharp}{C{\liberationrm\#}}
+
+\begin{document}
+
+\maketitle
+\mainmatter
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thelisting}{\arabic{listing}}
+
+\textbf{Цель}: Сформировать навыки разработки программ с использованием Windows
+Forms.
+
+\section*{Задание}
+
+\begin{enumerate}
+    \item Создайте в среде разработки MS VS проект. В качестве типа проекта
+          выбрать \textquote{Windows Application} (или \textquote{Windows Forms
+              Application} в зависимости от версии .NET Framework).
+    \item После создания и сохранения проекта измените программу таким образом,
+          чтобы координаты курсора мыши выводились в заголовке главного окна
+          приложения.
+    \item Добавьте текстовое поле (TextBox) в режиме разработки (для этого
+          необходимо использовать панель элементов управления
+          \textquote{ToolBox}). Дополните обработчик движения мыши таким
+          образом, чтобы в текстовом поле отображалась сумма координат указателя
+          мыши.
+    \item Работающую программу необходимо представить преподавателю.
+    \item После этого выполните индивидуальное задание в соответствие с
+          вариантом. В каждом задании необходимо вывести значение выражения,
+          предварительно введя значения переменных в соответствующие текстовые
+          поля формы главного окна приложения. Результат выводится в заголовок
+          окна в ответ на нажатие кнопки (кнопку также необходимо поместить на
+          форму).
+    \item Для выполнения индивидуального задания необходимо использовать
+          математические функции, которые доступны в виде статических методов
+          класса Math.
+\end{enumerate}
+
+\makeimage[Окно программы]{1.png}[width=.7\textwidth]
+
+\makelisting{Program.cs}[Program.cs]
+
+\makelisting{MainForm.cs}[MainForm.cs]
+
+\makelisting{MainForm.Designer.cs}[MainForm.Designer.cs]
+
+\makelisting{MainForm.resx}[MainForm.resx]
+
+\textbf{Вывод}: освоена разработка программ с использованием фреймворка Windows
+Forms.
+
+\end{document}
