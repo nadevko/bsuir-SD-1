@@ -1,6 +1,4 @@
 = bsuir SD labs
-Nadeŭka <nadevko@riseup.net>
-v1.0, 2024-03-19
 
 * link:01/README.adoc[1]
 * link:02/README.adoc[2]
@@ -9,3 +7,8 @@ v1.0, 2024-03-19
 * link:05/README.adoc[5]
 * link:06/README.adoc[6]
 * link:07/README.adoc[7]
+* link:08/README.adoc[8]
+* link:09/README.adoc[9]
+* link:10/README.adoc[10]
+* link:11/README.adoc[11]
+* link:12/README.adoc[12]
