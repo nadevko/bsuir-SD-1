@@ -1,0 +1,50 @@
+\documentclass{bsuir}
+
+\departmentlong{инженерной психологии и эргономики}
+\workcode{11}
+\worktitle{Разработка отладка и испытание программ\\с пользовательским интерфейсом WPF}
+\titleleft{
+    Проверил:\\
+    Давыдович К.И.\\
+    ~
+}
+\titleright{
+    Выполнил:\\
+    Бородин А.Н.\\
+    гр. 310901
+}
+\titlepageyear{2024}
+
+\newfontface\liberationrm{Liberation Serif}
+\newcommand{\csharp}{C{\liberationrm\#}}
+
+\begin{document}
+
+\maketitle
+\mainmatter
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thelisting}{\arabic{listing}}
+
+\textbf{Цель}: Сформировать навыки разработки программ с использованием Windows
+Presentation Foundation.
+
+\section*{Задание 2}
+
+Создайте список, в котором элементы могут изменять начертание символов,
+например, с обычного начертания на курсивное. При клике на элемент списка
+выделяется только этот элемент, но не отменяется начертание остальных элементов.
+
+\makeimage[Окно программы]{1.png}[width=.5\textwidth]
+
+\makelisting{App.xaml}[App.xaml]
+
+\makelisting{App.xaml.cs}[App.xaml.cs]
+
+\makelisting{MainWindow.xaml}[MainWindow.xaml]
+
+\makelisting{MainWindow.xaml.cs}[MainWindow.xaml.cs]
+
+\textbf{Вывод}: получены навыки и освоена разработка программ с использованием
+Windows Presentation Foundation.
+
+\end{document}
